@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0006CF14231514B4000D8204 /* UILabel+Infomation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0006CF13231514B4000D8204 /* UILabel+Infomation.m */; };
 		000DE85E2314026F001FCF89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DE85D2314026F001FCF89 /* AppDelegate.m */; };
 		000DE8612314026F001FCF89 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DE8602314026F001FCF89 /* ViewController.m */; };
 		000DE8642314026F001FCF89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000DE8622314026F001FCF89 /* Main.storyboard */; };
@@ -15,6 +16,12 @@
 		000DE86C23140271001FCF89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DE86B23140271001FCF89 /* main.m */; };
 		000DE87623140271001FCF89 /* CategoryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DE87523140271001FCF89 /* CategoryDemoTests.m */; };
 		000DE88123140271001FCF89 /* CategoryDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DE88023140271001FCF89 /* CategoryDemoUITests.m */; };
+		0013888F2315604E009DE6C6 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0013888D2315604E009DE6C6 /* FirstViewController.m */; };
+		001388902315604E009DE6C6 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0013888E2315604E009DE6C6 /* FirstViewController.xib */; };
+		0013889B23160BBC009DE6C6 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0013889923160BBC009DE6C6 /* SecondViewController.m */; };
+		0013889C23160BBC009DE6C6 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0013889A23160BBC009DE6C6 /* SecondViewController.xib */; };
+		001388A223162E95009DE6C6 /* MObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0013889E23162E94009DE6C6 /* MObserver.m */; };
+		001388A323162E95009DE6C6 /* MObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0013889F23162E94009DE6C6 /* MObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0006CF12231514B4000D8204 /* UILabel+Infomation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Infomation.h"; sourceTree = "<group>"; };
+		0006CF13231514B4000D8204 /* UILabel+Infomation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Infomation.m"; sourceTree = "<group>"; };
 		000DE8592314026F001FCF89 /* CategoryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CategoryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		000DE85C2314026F001FCF89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		000DE85D2314026F001FCF89 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +60,18 @@
 		000DE87C23140271001FCF89 /* CategoryDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CategoryDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		000DE88023140271001FCF89 /* CategoryDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryDemoUITests.m; sourceTree = "<group>"; };
 		000DE88223140271001FCF89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0013888C2315604E009DE6C6 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		0013888D2315604E009DE6C6 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		0013888E2315604E009DE6C6 /* FirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		001388912315607B009DE6C6 /* FirstViewController+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirstViewController+Extension.h"; sourceTree = "<group>"; };
+		0013889723160AB6009DE6C6 /* TransformValueDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformValueDelegate.h; sourceTree = "<group>"; };
+		0013889823160BBC009DE6C6 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		0013889923160BBC009DE6C6 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		0013889A23160BBC009DE6C6 /* SecondViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		0013889E23162E94009DE6C6 /* MObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MObserver.m; sourceTree = "<group>"; };
+		0013889F23162E94009DE6C6 /* MObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MObject.m; sourceTree = "<group>"; };
+		001388A023162E94009DE6C6 /* MObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MObserver.h; sourceTree = "<group>"; };
+		001388A123162E95009DE6C6 /* MObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +122,11 @@
 		000DE85B2314026F001FCF89 /* CategoryDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0013889623160A58009DE6C6 /* Delegate */,
+				00138895231568FD009DE6C6 /* ObserveKVO */,
+				00138894231568EC009DE6C6 /* Notification */,
+				00138892231568AA009DE6C6 /* Extension */,
+				00138893231568C1009DE6C6 /* Category */,
 				000DE85C2314026F001FCF89 /* AppDelegate.h */,
 				000DE85D2314026F001FCF89 /* AppDelegate.m */,
 				000DE85F2314026F001FCF89 /* ViewController.h */,
@@ -130,6 +156,55 @@
 				000DE88223140271001FCF89 /* Info.plist */,
 			);
 			path = CategoryDemoUITests;
+			sourceTree = "<group>";
+		};
+		00138892231568AA009DE6C6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0013888C2315604E009DE6C6 /* FirstViewController.h */,
+				0013888D2315604E009DE6C6 /* FirstViewController.m */,
+				0013888E2315604E009DE6C6 /* FirstViewController.xib */,
+				001388912315607B009DE6C6 /* FirstViewController+Extension.h */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		00138893231568C1009DE6C6 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0006CF12231514B4000D8204 /* UILabel+Infomation.h */,
+				0006CF13231514B4000D8204 /* UILabel+Infomation.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		00138894231568EC009DE6C6 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		00138895231568FD009DE6C6 /* ObserveKVO */ = {
+			isa = PBXGroup;
+			children = (
+				001388A123162E95009DE6C6 /* MObject.h */,
+				0013889F23162E94009DE6C6 /* MObject.m */,
+				001388A023162E94009DE6C6 /* MObserver.h */,
+				0013889E23162E94009DE6C6 /* MObserver.m */,
+			);
+			path = ObserveKVO;
+			sourceTree = "<group>";
+		};
+		0013889623160A58009DE6C6 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0013889723160AB6009DE6C6 /* TransformValueDelegate.h */,
+				0013889823160BBC009DE6C6 /* SecondViewController.h */,
+				0013889923160BBC009DE6C6 /* SecondViewController.m */,
+				0013889A23160BBC009DE6C6 /* SecondViewController.xib */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +313,8 @@
 				000DE86923140271001FCF89 /* LaunchScreen.storyboard in Resources */,
 				000DE86623140271001FCF89 /* Assets.xcassets in Resources */,
 				000DE8642314026F001FCF89 /* Main.storyboard in Resources */,
+				001388902315604E009DE6C6 /* FirstViewController.xib in Resources */,
+				0013889C23160BBC009DE6C6 /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +339,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001388A323162E95009DE6C6 /* MObject.m in Sources */,
+				0013889B23160BBC009DE6C6 /* SecondViewController.m in Sources */,
+				0006CF14231514B4000D8204 /* UILabel+Infomation.m in Sources */,
 				000DE8612314026F001FCF89 /* ViewController.m in Sources */,
+				0013888F2315604E009DE6C6 /* FirstViewController.m in Sources */,
+				001388A223162E95009DE6C6 /* MObserver.m in Sources */,
 				000DE86C23140271001FCF89 /* main.m in Sources */,
 				000DE85E2314026F001FCF89 /* AppDelegate.m in Sources */,
 			);
