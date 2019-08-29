@@ -21,10 +21,16 @@
 
 - (void)increase
 {
-    //直接为成员变量赋值
+    //1、直接为成员变量赋值，不能触发KVO
+    // _value += 1;
+    
+    //2、手动添加KVO才可以触发KVO
     [self willChangeValueForKey:@"value"];
     _value += 1;
     [self didChangeValueForKey:@"value"];
 }
-
+//如果想验证KVC是否触犯了该方法，则需要放开下面的注释。
+//- (void)setValue:(int)value{
+//    NSLog(@"====+++KVC触发了setter");
+//}
 @end

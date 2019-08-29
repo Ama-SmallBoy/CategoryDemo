@@ -16,9 +16,6 @@
 #import "MObject.h"
 #import "MObserver.h"
 
-
-
-
 @interface ViewController ()<TransformValueDelegate,TransformValueSecondDelegate>
 
 @end
@@ -169,7 +166,6 @@
      代理方会强持有他的委托方，而此时，委托方需要有一个代理方的声明为弱引用（weak），这样就规避了循环引用。
      
      //当然代理也可以有第二种方式，就是不需要有单独的文件，而是直接在委托方的头文件中定义；
-
      
      */
     
@@ -190,9 +186,118 @@
     
     /*
      TODO:观察者 KVO
+     
+     1、什么是KVO?
+     KVO全称为Key-value observing 的缩写
+     KVO的实现模式是观察者模式。
+     Apple  运用了 isa混写（isa-swizzling）来实现了KVO
+     
+     2、isa-swizzling 是如何实现KVO的。 NSKVONotifying_A 是 A 的一个子类，之所以创建这样一个子类，就是为了重写父类的Setter方法，负责通知所有对象
+     
+     *==============================
+     NSKVONotifying_A的setter方法的具体的实现
+     -(void)setValue:(id)obj{
+         [self willChangeValueForKey:@"keyPath"];
+         [super setValue:obj];
+         [self didChangeValueFroKey:@"keyPath"];
+     }
+     =============================*
+
+     注册观察者（addObserverForPath:）--> 比如说：观察者观察对象A的成员变量或者属性 --> 系统会为我们动态生成一个NSKVONotifying_A的类 --> 又会将原来指向A的isa 指针 指向了 NSKVONotifying_A 类
+     
+     如何手动添加KVO？
+     如下添加即可：
+     [self willChangeValueForKey:@"value"];
+     _value += 1;
+     [self didChangeValueForKey:@"value"];
+     2、KVO的实现机制是什么？
      */
     [self showObserverDemo];
+    
+    /*
+     TODO:KVC Key-value coding的s缩写.
+     
+     -(id)valueForKey:(NSString *)key;
+     
+     -(void)setValue:(id)value forKey:(NSString *)key;
+     
+     TODO:我们使用键值编码，是否会破坏面向对象的编程方法？会。如果我们知道了一个类的私有的成员变量，我们就可以使用键值编码进行更改与访问：类似这种：[obj setValue:@2 forKey:@"value"];
+     
+     TODO:valueForKey 的系统实现流程：首先：会判断通过Key访问的实例变量是否有相应的get方法，如果存在，就直接调用，然后结束。如果不存，就会判断实例变量是否存在，通过+(BOOL)accessInstanceVariablesDirectly判断实例变量是否存在,默认值为YES(key与成员变量相同或者相似都会返回YES)。如果不存，系统会调用当前实例的valueForUndefinedKey:方法，然后会抛出一个为定义Key 的异常，然后结束valueForKey的调用流程。
+     
+     TODO: 访问器方法是否存在的判断规则：getKey key isKey 都说get方法存在。
+     
+     实例变量说明：_key\_isKey\key\isKey 都可以说明key成员变量存在。
+     
+     setValue:forKey:的流程同valueForKey:基本相同。
+     
+     */
+    
+    /*属性关键字：
+     
+     读写权限
+     引用计数
+     原子性：atomic 保证s赋值和获取线程安全的，并不能保证其操作与访问的安全性。比如修饰的是数组：对数组进行赋值或者获取，可以保证线程安全的。对于数组的添加和删除，则不能保证线程安全。
+     
+     TODO:weak 和 assign 区别 ？？
+     assign 特点：1、修饰数据类型 2、在修改对象时，引用计数不改变 3、会产生悬垂指针（在修饰的对象被释放掉后，其仍然指向该对象的内存地址。）（引起内存泄漏，野指针）
+     
+     weak 特点：1、不改变g被修饰对象的引用计数。 2、所指代的对象在被释放后，会自动置为nil.
+     
+     weak 指针在被废弃之后，为何会被置为nil呢。
+     
+     
+     copy : 浅拷贝 拷贝的仅仅是指针，内存并没有发生改变，也就说，原指针和拷贝后的对象，都指向一个内存空间。而深拷贝：拷贝的不仅仅是指针，还拷贝了内存空间，也就是，这是两个内容完全相同的内存空间。
+     
+     浅拷贝：是对内存地址的复制，目标对象指针和源对象指针指向同一片内存空间。
+     
+     
+     如何区别深拷贝&&浅拷贝：1、是否开辟了内存空间 2、是否会引起对象的引用计数的更改。
+     
+     
+     
+     可变对象的copy与mutableCopy 都是深拷贝，
+     不可变对象的copy是浅拷贝，mutableCopy 是深拷贝。
+     
+     copy 方法返回的都是不可变对象。
+
+     //浅拷贝（指针复制，不会创建一个新的对象）
+     - (id)copyWithZone:(NSZone *)zone{
+     return self;
+     }
+     
+     
+     //深拷贝(内容复制，会创建一个新的对象)
+     //- (id)copyWithZone:(NSZone *)zone{
+     //    //创建新的对象空间
+     //    Model1 *model = [[Model1 allocWithZone:zone]init];
+     //   //属性也进行深层拷贝
+     //    model.name = [self.name mutableCopy];
+     //    return model;
+     //}
+     
+     
+     MRC下如何重写retain修饰变量的setter方法？？
+     @property(nonatomic,retain) id obj;
+     
+     -(void)setObj:(id)obj{
+         if (_obj!=obj) {
+         [_obj release];
+         _obj = [obj retain];
+         }
+     }
+     
+     为什么要进行判断_obj != obj;???
+     
+     如果不进行判断？假设：_obj 与 obj 是同一个话，那么， [_obj release]; _obj 被释放，当我们在[obj retain];程序就会保存，Crash。
+
+     
+     */
+    
+    
 }
+
+
 
 //展示观察者模式：
 -(void)showObserverDemo{
@@ -200,16 +305,17 @@
     MObject *obj = [[MObject alloc] init];
     MObserver *observer = [[MObserver alloc] init];
     
+  
     //调用kvo方法监听obj的value属性的变化
     [obj addObserver:observer forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:NULL];
     
     //通过setter方法修改value
     obj.value = 1;
     
-    // 1 通过kvc设置value能否生效？
-    [obj setValue:@2 forKey:@"value"];
+    // 1 通过kvc设置value能否生效？如果可以，原因是什么？？
+    [obj setValue:@2 forKey:@"value"];//由于KVC调用了Obj的setter方法，所以也能触发。如何印证，可以重写obj的setter 方法。
     
-    // 2. 通过成员变量直接赋值value能否生效?
+    // 2. 通过成员变量直接赋值value能否生效?不能触发KVO,需要手动添加才可以。
     [obj increase];
 
 }
