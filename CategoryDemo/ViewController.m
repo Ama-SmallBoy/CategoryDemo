@@ -92,7 +92,7 @@
     
 //    object:关联的源对象。
 //    value要与对象关联的值。可以将其设置为nil,来移除关联性。
-//    key 关联的key值：传递进去的是，在分类中的生命的方法或者选择器：@selector(text);
+//    key 关联的key值：传递进去的是，在分类中的声明的方法或者选择器：@selector(text);
     
 //    objc_setAssociatedObject(id  _Nonnull object, const void * _Nonnull key, id  _Nullable value, objc_AssociationPolicy policy);
     
@@ -202,15 +202,22 @@
          [self didChangeValueFroKey:@"keyPath"];
      }
      =============================*
-
-     注册观察者（addObserverForPath:）--> 比如说：观察者观察对象A的成员变量或者属性 --> 系统会为我们动态生成一个NSKVONotifying_A的类 --> 又会将原来指向A的isa 指针 指向了 NSKVONotifying_A 类
+     3、KVO的实现机制是什么？
+     注册观察者（addObserverForPath:）--> 比如说：观察者观察对象A的成员变量或者属性 --> 系统会为我们动态生成一个NSKVONotifying_A的类 --> 又会将原来指向A的isa 指针 指向了 NSKVONotifying_A 类,现在创建 NSKVONotifying_A 类的时候，会重写A 的setter方法，在重写的setter方法中，会首先调用 [self willChangeValueForKey:@"keyPath"];接着调用父类的setter方法 [super setValue:obj];最后调用  [self didChangeValueFroKey:@"keyPath"];（如上代码）在调用最后的didChangeValueFroKey方法的时候，会出发观察者的observeValueForKeyPath方法，从而完成整个的观察者的工作流程。
      
-     如何手动添加KVO？
+     4、如何手动添加KVO？
      如下添加即可：
      [self willChangeValueForKey:@"value"];
      _value += 1;
      [self didChangeValueForKey:@"value"];
-     2、KVO的实现机制是什么？
+     
+     以上我们所熟知的观察的模式KVO。接下来，我们来思考这样两个问题。
+     **1. 使用KVC给变量赋值，会触发KVO吗？**
+     答案是肯定的，因为在使用KVC赋值的时候，触发了对象的setter方法，在[Demo](https://github.com/Ama-SmallBoy/CategoryDemo.git)的有相应的印证代码。
+     
+     2. 直接给成员变量赋值，会触发KVO吗？
+     答案：不能触发KVO的。从KVO的实现机制中，我们知道，系统为我们提供的KVO相当于在我们的setter 方法中插入了两行代码willChangeValueForKey：和 didChangeValueForKey：，那么我们是否也可以在成员变量赋值的时候，手动的添加这两行代码，来模拟系统的setter方法，来实现KVO呢，答案是肯定。这就是我们手动添加KVO的一个运用场景。具体实现，可参考[Demo](https://github.com/Ama-SmallBoy/CategoryDemo.git)中的事例代码。
+     
      */
     [self showObserverDemo];
     
@@ -263,7 +270,7 @@
 
      //浅拷贝（指针复制，不会创建一个新的对象）
      - (id)copyWithZone:(NSZone *)zone{
-     return self;
+        return self;
      }
      
      
@@ -319,6 +326,7 @@
     [obj increase];
 
 }
+
 //使用分类：
 -(void)useCategoryMethod{
     UILabel * testlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
